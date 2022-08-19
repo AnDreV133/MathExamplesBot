@@ -101,7 +101,7 @@ public class BotLogics {
         LinkedList<String> expression = new LinkedList<>();
         StringBuilder expressionInLine = new StringBuilder();
 
-        switch (randomNumber.nextInt(9)) {
+        switch (randomNumber.nextInt(10)) {
             case 0: {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
@@ -273,7 +273,7 @@ public class BotLogics {
         return expressionPostfix;
     }
 
-    private static String takeAnswer(ArrayList<String> expressionPostfix) {
+    private static String takeAnswer(ArrayList<String> expressionPostfix) throws IllegalArgumentException {
         Stack<Integer> answer = new Stack<>();
         int priority;
         for (int i = 0; i < size(expressionPostfix); i++) {
@@ -339,7 +339,7 @@ public class BotLogics {
 
     private static String plusOrMinus() {
         Random randomOperator = new Random();
-        switch (randomOperator.nextInt(1)) {
+        switch (randomOperator.nextInt(2)) {
             case 0: {
                 return "+";
             }
