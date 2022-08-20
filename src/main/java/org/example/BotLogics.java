@@ -1,6 +1,9 @@
 package org.example;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Stack;
+import java.util.Random;
 
 
 public class BotLogics {
@@ -57,7 +60,7 @@ public class BotLogics {
         StringBuilder expressionInLine = new StringBuilder();
 
         switch (randomNumber.nextInt(2)) {
-            case 0: {
+            case 0 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add("*");
                 expression.add(getSmallRandomNumber(maxSmallNumber));
@@ -65,9 +68,8 @@ public class BotLogics {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 1: {
+            case 1 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
@@ -75,9 +77,8 @@ public class BotLogics {
                 expression.add(getSmallRandomNumber(maxSmallNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 2: {
+            case 2 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
@@ -85,7 +86,6 @@ public class BotLogics {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add("*");
                 expression.add(getSmallRandomNumber(maxSmallNumber));
-                break;
             }
         }
 
@@ -102,7 +102,7 @@ public class BotLogics {
         StringBuilder expressionInLine = new StringBuilder();
 
         switch (randomNumber.nextInt(10)) {
-            case 0: {
+            case 0 -> {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
@@ -112,9 +112,8 @@ public class BotLogics {
                 expression.add(getSmallRandomNumber(maxSmallNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 1: {
+            case 1 -> {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add("*");
@@ -124,9 +123,8 @@ public class BotLogics {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 2: {
+            case 2 -> {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
@@ -136,9 +134,8 @@ public class BotLogics {
                 expression.add(")");
                 expression.add("*");
                 expression.add(getSmallRandomNumber(maxSmallNumber));
-                break;
             }
-            case 3: {
+            case 3 -> {
                 expression.add(getSmallRandomNumber(maxSmallNumber));
                 expression.add("*");
                 expression.add("(");
@@ -148,9 +145,8 @@ public class BotLogics {
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(")");
-                break;
             }
-            case 4: {
+            case 4 -> {
                 expression.add(getSmallRandomNumber(maxSmallNumber));
                 expression.add("*");
                 expression.add("(");
@@ -160,9 +156,8 @@ public class BotLogics {
                 expression.add(")");
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 5: {
+            case 5 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add("(");
@@ -172,9 +167,8 @@ public class BotLogics {
                 expression.add(")");
                 expression.add("*");
                 expression.add(getSmallRandomNumber(maxSmallNumber));
-                break;
             }
-            case 6: {
+            case 6 -> {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
@@ -184,9 +178,8 @@ public class BotLogics {
                 expression.add(")");
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 7: {
+            case 7 -> {
                 expression.add("(");
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add("*");
@@ -196,9 +189,8 @@ public class BotLogics {
                 expression.add(")");
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
-                break;
             }
-            case 8: {
+            case 8 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add("(");
@@ -208,9 +200,8 @@ public class BotLogics {
                 expression.add(plusOrMinus());
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(")");
-                break;
             }
-            case 9: {
+            case 9 -> {
                 expression.add(getRandomNumber(minNumber, maxNumber));
                 expression.add(plusOrMinus());
                 expression.add("(");
@@ -220,7 +211,6 @@ public class BotLogics {
                 expression.add("*");
                 expression.add(getSmallRandomNumber(maxSmallNumber));
                 expression.add(")");
-                break;
             }
         }
 
@@ -228,7 +218,7 @@ public class BotLogics {
             try {
                 if (expression.get(i).equals("(")) {
                     expressionInLine.append(expression.get(i));
-                } else if (expression.get(i+1).equals(")")) {
+                } else if (expression.get(i + 1).equals(")")) {
                     expressionInLine.append(expression.get(i));
                 } else {
                     expressionInLine.append(expression.get(i) + " ");
@@ -238,7 +228,6 @@ public class BotLogics {
                 break;
             }
         }
-
         return new String[]{expressionInLine.toString(), takeAnswer(RPNConverter(expression))};
     }
 
@@ -246,10 +235,10 @@ public class BotLogics {
         ArrayList<String> expressionPostfix = new ArrayList<>(expression.size());
         Stack<String> stack = new Stack<>();
         int priority;
-        for (int i = 0; i < expression.size(); i++) {
-            priority = getPriority(expression.get(i));
-            if (priority == 0) expressionPostfix.add(expression.get(i));
-            else if (priority == 1) stack.push(expression.get(i));
+        for (String i : expression) {
+            priority = getPriority(i);
+            if (priority == 0) expressionPostfix.add(i);
+            else if (priority == 1) stack.push(i);
             else if (priority > 1) {
                 while (!stack.empty()) {
                     if (getPriority(stack.peek()) >= priority) {
@@ -258,7 +247,7 @@ public class BotLogics {
                         break;
                     }
                 }
-                stack.push(expression.get(i));
+                stack.push(i);
             } else if (priority == -1) {
                 while (getPriority(stack.peek()) != 1) {
                     expressionPostfix.add(stack.pop());
@@ -300,53 +289,35 @@ public class BotLogics {
     }
 
     private static int getPriority(String symbol) {
-        switch (symbol) {
-            case "*":
-                return 3;
-            case "/":
-                return 3;
-            case "+":
-                return 2;
-            case "-":
-                return 2;
-            case "(":
-                return 1;
-            case ")":
-                return -1;
-            default:
-                return 0;
-        }
-    }
-
-
-    private static int size(String[] array) {
-        int len = 0;
-        for (String ignored : array) {
-            len += 1;
-        }
-        return len;
+        return switch (symbol) {
+            case "*", "/" -> 3;
+            case "+", "-" -> 2;
+            case "(" -> 1;
+            case ")" -> -1;
+            default -> 0;
+        };
     }
 
     private static int size(ArrayList<String> array) {
         return array.size();
     }
 
-    private static String getRandomOperator(String[] operators) {
-        Random randomPosition = new Random();
-        int size = size(operators);
-        return operators[randomPosition.nextInt(size)];
-    }
+//    private static String getRandomOperator(String[] operators) {
+//        Random randomPosition = new Random();
+//        int size = size(operators);
+//        return operators[randomPosition.nextInt(size)];
+//    }
 
     private static String plusOrMinus() {
         Random randomOperator = new Random();
         switch (randomOperator.nextInt(2)) {
-            case 0: {
+            case 0 -> {
                 return "+";
             }
-            case 1: {
+            case 1 -> {
                 return "-";
             }
-            default: {
+            default -> {
                 return null;
             }
         }

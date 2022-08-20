@@ -13,7 +13,7 @@ public class Bot extends DefaultAbsSender {
 
     @Override
     public String getBotToken() {
-        return "5402029894:AAEPajUqXlP-aAHoNORKHjB-x6VKc27m8l4";
+        return "";
     }
     @SneakyThrows
     public static void main (String[] args) {
