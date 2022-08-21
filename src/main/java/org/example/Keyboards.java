@@ -1,17 +1,31 @@
 package org.example;
 
 import lombok.SneakyThrows;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 
 public class Keyboards {
-
+    private static Properties property() {
+        Properties property;
+        try {
+            property = new Properties();
+            FileInputStream file = new FileInputStream("src/main/resources/SecretInfoOfTelegramBot.properties");
+            property.load(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return property;
+    }
     @SneakyThrows
-    public InlineKeyboardMarkup getInlineStartButtons() {
+    public SendMessage getInlineStartKeyboard(long chatID) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         InlineKeyboardButton buttonTeacher = new InlineKeyboardButton();
@@ -35,10 +49,14 @@ public class Keyboards {
 
         inlineKeyboardMarkup.setKeyboard(rowList);
 
-        return inlineKeyboardMarkup;
+        SendMessage message = new SendMessage();
+        message.setChatId(chatID);
+        message.setText(property().getProperty("StartText"));
+        message.setReplyMarkup(inlineKeyboardMarkup);
+        return message;
     }
 
-    public InlineKeyboardMarkup getInlineStudentKeyboard() {
+    public SendMessage getInlineStudentKeyboard(long chatID) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         InlineKeyboardButton lvl0 = new InlineKeyboardButton();
@@ -77,6 +95,10 @@ public class Keyboards {
 
         inlineKeyboardMarkup.setKeyboard(rowList);
 
-        return inlineKeyboardMarkup;
+        SendMessage message = new SendMessage();
+        message.setChatId(chatID);
+        message.setText("-");
+        message.setReplyMarkup(inlineKeyboardMarkup);
+        return message;
     }
 }

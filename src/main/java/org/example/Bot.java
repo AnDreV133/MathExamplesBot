@@ -3,11 +3,8 @@ package org.example;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
-import org.telegram.telegrambots.meta.generics.LongPollingBot;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.FileInputStream;
@@ -38,10 +35,25 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage()) {
+        try {
+            execute(new Keyboards().getInlineStartKeyboard(update.getUpdateId()));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+        if (update.hasCallbackQuery()) {
+            if (update.getCallbackQuery().getMessage().getText().equals("buttonStudent")) {
+                studentLogics(update);
+            } else if (update.getCallbackQuery().getMessage().getText().equals("buttonTeacher")) {
+
+            }
+        }
+    }
+    private static void studentLogics(Update update) {
+        if () {
 
         }
     }
+
 //    private static void startWork(Message message) {
 //        if (message.hasEntities()) {
 //            if (message.getEntities().)
