@@ -3,7 +3,11 @@ package org.example;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -57,38 +61,30 @@ public class Keyboards {
     }
 
     public SendMessage getInlineStudentKeyboard(long chatID) {
-        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        ReplyKeyboardMarkup inlineKeyboardMarkup = new ReplyKeyboardMarkup();
 
-        InlineKeyboardButton lvl0 = new InlineKeyboardButton();
-        InlineKeyboardButton lvl1 = new InlineKeyboardButton();
-        InlineKeyboardButton lvl2 = new InlineKeyboardButton();
-        InlineKeyboardButton lvl3 = new InlineKeyboardButton();
-        InlineKeyboardButton inventory = new InlineKeyboardButton();
+        KeyboardButton lvl0 = new KeyboardButton();
+        KeyboardButton lvl1 = new KeyboardButton();
+        KeyboardButton lvl2 = new KeyboardButton();
+        KeyboardButton lvl3 = new KeyboardButton();
+        KeyboardButton inventory = new KeyboardButton();
 
-        lvl0.setText("Уровень: 0");
-        lvl1.setText("Уровень: 1");
-        lvl2.setText("Уровень: 2");
-        lvl3.setText("Уровень: 3");
-        inventory.setText("Сумка");
+        lvl0.setText("lvl0");
+        lvl1.setText("lvl1");
+        lvl2.setText("lvl2");
+        lvl3.setText("lvl3");
+        inventory.setText("Bag");
 
-        lvl0.setCallbackData("lvl0");
-        lvl1.setCallbackData("lvl1");
-        lvl2.setCallbackData("lvl2");
-        lvl3.setCallbackData("lvl3");
-        inventory.setCallbackData("inventory");
-
-        List<InlineKeyboardButton> keyboardButtonRow1 = new ArrayList<>();
+        KeyboardRow keyboardButtonRow1 = new KeyboardRow();
         keyboardButtonRow1.add(lvl0);
         keyboardButtonRow1.add(lvl1);
-
-        List<InlineKeyboardButton> keyboardButtonRow2 = new ArrayList<>();
+        KeyboardRow keyboardButtonRow2 = new KeyboardRow();
         keyboardButtonRow2.add(lvl2);
         keyboardButtonRow2.add(lvl3);
-
-        List<InlineKeyboardButton> keyboardButtonRow3 = new ArrayList<>();
+        KeyboardRow keyboardButtonRow3 = new KeyboardRow();
         keyboardButtonRow3.add(inventory);
 
-        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        List<KeyboardRow> rowList = new ArrayList<>();
         rowList.add(keyboardButtonRow1);
         rowList.add(keyboardButtonRow2);
         rowList.add(keyboardButtonRow3);

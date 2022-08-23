@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 1.4">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AllMessage.properties" afterDir="false" />
+    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 1.5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Keyboards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Keyboards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661073045607</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="bot v 1.5">
+      <created>1661084362570</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661084362570</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +155,7 @@
     <MESSAGE value="bot v 1.2" />
     <MESSAGE value="bot v 1.3" />
     <MESSAGE value="bot v 1.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="bot v 1.4" />
+    <MESSAGE value="bot v 1.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="bot v 1.5" />
   </component>
 </project>

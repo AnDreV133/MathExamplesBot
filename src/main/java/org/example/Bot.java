@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Bot extends TelegramLongPollingBot {
+    private static String mode = "";
     private static Properties property() {
         Properties property;
         try {
@@ -35,19 +36,43 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        try {
-            execute(new Keyboards().getInlineStartKeyboard(update.getUpdateId()));
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-        if (update.hasCallbackQuery()) {
-            if (update.getCallbackQuery().getMessage().getText().equals("buttonStudent")) {
-                studentLogics(update);
-            } else if (update.getCallbackQuery().getMessage().getText().equals("buttonTeacher")) {
-
+        if (update.hasMessage()) {
+            if (update.getMessage().getText().equals("/start") || update.getMessage().getText().equals("/mainMenu")) {
+                mode = "";
+                try {
+                    execute(new Keyboards().getInlineStartKeyboard(update.getUpdateId()));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
             }
         }
+        if (update.hasCallbackQuery() && mode.equals("")) {
+            if (update.getCallbackQuery().getMessage().getText().equals("buttonStudent")) {
+                mode = "Student";
+                try {
+                    execute(new Keyboards().getInlineStudentKeyboard(update.getUpdateId()));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+//                studentLogics(update);
+            } else if (update.getCallbackQuery().getMessage().getText().equals("buttonTeacher")) {
+                mode = "Teacher";
+                try {
+                    execute(new Keyboards().getInlineStudentKeyboard(update.getUpdateId()));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+//                teacherLogics(update);
+            }
+        }
+        if (update.hasCallbackQuery() && mode.equals("Student")) {
+            studentLogics(update);
+        }
     }
+
+    private static void teacherLogics(Update update) {
+    }
+
     private static void studentLogics(Update update) {
         if () {
 
