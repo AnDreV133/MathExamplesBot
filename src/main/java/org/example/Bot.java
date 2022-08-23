@@ -68,15 +68,18 @@ public class Bot extends TelegramLongPollingBot {
         if (update.hasCallbackQuery() && mode.equals("Student")) {
             studentLogics(update);
         }
-    }
-
-    private static void teacherLogics(Update update) {
+        if (update.hasCallbackQuery() && mode.equals("Teacher")) {
+            studentLogics(update);
+        }
     }
 
     private static void studentLogics(Update update) {
         if () {
 
         }
+    }
+
+    private static void teacherLogics(Update update) {
     }
 
 //    private static void startWork(Message message) {
