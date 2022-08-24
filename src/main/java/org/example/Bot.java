@@ -3,6 +3,8 @@ package org.example;
 import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
@@ -11,8 +13,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+
 public class Bot extends TelegramLongPollingBot {
-    private static String mode = "";
     private static Properties property() {
         Properties property;
         try {
@@ -28,53 +30,65 @@ public class Bot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return property().getProperty("BotName");
     }
-
     @Override
     public String getBotToken() {
         return property().getProperty("Token");
     }
-
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
-            if (update.getMessage().getText().equals("/start") || update.getMessage().getText().equals("/mainMenu")) {
-                mode = "";
+            String message = update.getMessage().getText();
+            long chatID = update.getMessage().getChatId();
+            System.out.println(1);
+            if (message.equals("/start") || message.equals("/mainMenu")) {
+                System.out.println(2);
                 try {
-                    execute(new Keyboards().getInlineStartKeyboard(update.getUpdateId()));
+                    execute(new Keyboards().getInlineStartKeyboard(chatID));
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
             }
         }
-        if (update.hasCallbackQuery() && mode.equals("")) {
-            if (update.getCallbackQuery().getMessage().getText().equals("buttonStudent")) {
-                mode = "Student";
+        if (update.hasCallbackQuery()) {
+            System.out.println(3);
+            long chatID = update.getCallbackQuery().getMessage().getChatId();
+            String callbackQuery = update.getCallbackQuery().getData();
+            if (callbackQuery.equals("buttonStudent")) {
+                System.out.println(4);
                 try {
-                    execute(new Keyboards().getInlineStudentKeyboard(update.getUpdateId()));
+                    execute(new Keyboards().getStudentKeyboard(chatID));
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-//                studentLogics(update);
-            } else if (update.getCallbackQuery().getMessage().getText().equals("buttonTeacher")) {
-                mode = "Teacher";
+            } else if (callbackQuery.equals("buttonTeacher")) {
+                System.out.println(5);
                 try {
-                    execute(new Keyboards().getInlineStudentKeyboard(update.getUpdateId()));
+                    execute(new Keyboards().getTeacherKeyboard(chatID));
                 } catch (TelegramApiException e) {
                     e.printStackTrace();
                 }
-//                teacherLogics(update);
             }
         }
-        if (update.hasCallbackQuery() && mode.equals("Student")) {
+        if (update.hasCallbackQuery()) {
             studentLogics(update);
         }
-        if (update.hasCallbackQuery() && mode.equals("Teacher")) {
-            studentLogics(update);
-        }
+//        if (update.hasMessage()) {
+//            teacherLogics(update);
+//        }
     }
 
     private static void studentLogics(Update update) {
-        if () {
+        String callbackQuery = update.getCallbackQuery().getData();
+        BotLogics mathExercises = new BotLogics();
+        if (callbackQuery.equals("lvl0")) {
+
+        } else if (callbackQuery.equals("lvl1")) {
+
+        } else if (callbackQuery.equals("lvl2")) {
+
+        } else if (callbackQuery.equals("lvl3")) {
+
+        } else if (callbackQuery.equals("Bag")) {
 
         }
     }
