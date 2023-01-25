@@ -22,7 +22,7 @@ public class BotLogics {
         return new String[]{expressionInLine.toString(), takeAnswer(RPNConverter(expression))};
     }
 
-    public String[] lvl1_multiplication(int minNumber, int maxNumber, int maxSmallNumber) {
+    private String[] lvl1_multiplication(int minNumber, int maxNumber, int maxSmallNumber) {
         LinkedList<String> expression = new LinkedList<>();
         StringBuilder expressionInLine = new StringBuilder();
 
@@ -37,7 +37,7 @@ public class BotLogics {
         return new String[]{expressionInLine.toString(), takeAnswer(RPNConverter(expression))};
     }
 
-    public String[] lvl1_additionNSubtraction(int minNumber, int maxNumber) {
+    private String[] lvl1_additionNSubtraction(int minNumber, int maxNumber) {
         LinkedList<String> expression = new LinkedList<>();
         StringBuilder expressionInLine = new StringBuilder();
 
@@ -52,6 +52,14 @@ public class BotLogics {
         }
 
         return new String[]{expressionInLine.toString(), takeAnswer(RPNConverter(expression))};
+    }
+    public String[] lvl1(int minNumber, int maxNumber, int maxSmallNumber) {
+        Random randomChoice = new Random();
+        switch (randomChoice.nextInt(2)) {
+            case 0: return lvl1_additionNSubtraction(minNumber, maxNumber);
+            case 1: return lvl1_multiplication(minNumber, maxNumber, maxSmallNumber);
+            default: return new String[] {"0 + 0", "0"};
+        }
     }
 
     public String[] lvl2(int minNumber, int maxNumber, int maxSmallNumber) {
@@ -344,13 +352,11 @@ class BotLogicsTest {
 //        System.out.println(takeAnswer(RPNConverter(str2)).equals("36"));
         BotLogics botFunc = new BotLogics();
         String[] str1 = botFunc.lvl0(10, 30);
-        String[] str2 = botFunc.lvl1_multiplication(2, 12, 5);
-        String[] str3 = botFunc.lvl1_additionNSubtraction(10, 30);
+        String[] str2 = botFunc.lvl1(2, 12, 5);
         String[] str4 = botFunc.lvl2(10, 30, 3);
         String[] str5 = botFunc.lvl3(10, 30, 3);
         System.out.println(str1[0] + "= " + str1[1]);
         System.out.println(str2[0] + "= " + str2[1]);
-        System.out.println(str3[0] + "= " + str3[1]);
         System.out.println(str4[0] + "= " + str4[1]);
         System.out.println(str5[0] + "= " + str5[1]);
     }

@@ -1,6 +1,7 @@
 package org.example;
 
 import lombok.SneakyThrows;
+import org.checkerframework.checker.units.qual.K;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -10,10 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
+import java.util.*;
 
 public class Keyboards {
     private static Properties property() {
@@ -29,7 +27,6 @@ public class Keyboards {
     }
     @SneakyThrows
     public SendMessage getInlineStartKeyboard(long chatID) {
-        System.out.println("ilkb_1");
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         InlineKeyboardButton buttonTeacher = new InlineKeyboardButton();
@@ -56,9 +53,7 @@ public class Keyboards {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatID);
         sendMessage.setText(property().getProperty("StartText"));
-        System.out.println("ilkb_1");
         sendMessage.setReplyMarkup(inlineKeyboardMarkup);
-        System.out.println("ilkb_2");
         return sendMessage;
     }
 
@@ -108,7 +103,7 @@ public class Keyboards {
     public SendMessage getTeacherKeyboard (long chatID) {
         return new SendMessage();
     }
-    public SendMessage getNumPad(long chatID, String exercises) {
+    public String getNumPad(long chatID, String exercises) {
         ReplyKeyboardMarkup keyboardButtons = new ReplyKeyboardMarkup();
 
         KeyboardButton b1 = new KeyboardButton();
@@ -160,12 +155,61 @@ public class Keyboards {
 
         keyboardButtons.setKeyboard(rowList);
 
-        return
+        return keyboardButtons.toString();
+        }
+    public SendMessage getAnswersKeyboard(long chatID, String[] exerciseNAnswer, int differentBetweenMaxNMin, String text) {
+        Random randomAnswer = new Random();
+        List<Integer> answers = new ArrayList<>(4);
 
-//        SendMessage message = new SendMessage();
-//        message.setChatId(chatID);
-//        message.setText(exercises);
-//        message.setReplyMarkup(keyboardButtons);
-//        return message;
+        answers.add(Integer.parseInt(exerciseNAnswer[1]));
+        answers.add(Integer.parseInt(exerciseNAnswer[1])
+                - randomAnswer.nextInt(differentBetweenMaxNMin / 3)
+                + randomAnswer.nextInt(differentBetweenMaxNMin / 2)
+        );
+        answers.add(Integer.parseInt(exerciseNAnswer[1])
+                + randomAnswer.nextInt(differentBetweenMaxNMin / 3)
+                - randomAnswer.nextInt(differentBetweenMaxNMin / 2)
+        );
+        answers.add(Integer.parseInt(exerciseNAnswer[1])
+                + randomAnswer.nextInt(differentBetweenMaxNMin / 4)
+                + 1
+        );
+        Collections.sort(answers);
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
+
+        KeyboardButton answer1 = new KeyboardButton();
+        KeyboardButton answer2 = new KeyboardButton();
+        KeyboardButton answer3 = new KeyboardButton();
+        KeyboardButton answer4 = new KeyboardButton();
+        KeyboardButton back = new KeyboardButton();
+
+        answer1.setText(String.valueOf(answers.get(0)));
+        answer2.setText(String.valueOf(answers.get(1)));
+        answer3.setText(String.valueOf(answers.get(2)));
+        answer4.setText(String.valueOf(answers.get(3)));
+        back.setText("<--");
+
+        KeyboardRow row1 = new KeyboardRow();
+        row1.add(answer1);
+        row1.add(answer2);
+        KeyboardRow row2 = new KeyboardRow();
+        row2.add(answer3);
+        row2.add(answer4);
+        KeyboardRow row3 = new KeyboardRow();
+        row3.add(back);
+
+        List<KeyboardRow> rowList = new ArrayList<>();
+        rowList.add(row1);
+        rowList.add(row2);
+        rowList.add(row3);
+
+        replyKeyboardMarkup.setKeyboard(rowList);
+
+        SendMessage message = new SendMessage();
+        message.setChatId(chatID);
+        message.setText(text + "\nРеши пример:\n" + exerciseNAnswer[0]);
+        message.setReplyMarkup(replyKeyboardMarkup);
+        return message;
     }
 }
