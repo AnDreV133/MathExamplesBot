@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 1.7">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DBHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DB_teacherNStudents" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Bot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/BotLogics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/BotLogics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Keyboards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Keyboards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AllMessage.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AllMessage.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" afterDir="false" />
-    </list>
+    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,18 +29,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.30.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "T:/java_project/BotForMathExercises",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.TestDB">
     <configuration name="Bot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Bot" />
@@ -179,7 +167,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661363147970</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bot v 2">
+      <created>1674668925429</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1674668925429</updated>
+    </task>
+    <task id="LOCAL-00010" summary="bot v 2">
+      <created>1674668934839</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1674668934839</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,6 +205,7 @@
     <MESSAGE value="bot v 1.6" />
     <MESSAGE value="bot v 1.6.1" />
     <MESSAGE value="bot v 1.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="bot v 1.7" />
+    <MESSAGE value="bot v 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="bot v 2" />
   </component>
 </project>
