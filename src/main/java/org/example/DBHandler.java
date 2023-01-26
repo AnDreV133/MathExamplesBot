@@ -26,7 +26,6 @@ public class DBHandler {
             throw new RuntimeException();
         }
     }
-    private final long userID = 1234;
 
     static Properties mainData() {
         Properties mainData;
@@ -42,17 +41,11 @@ public class DBHandler {
 
     @SneakyThrows
     static void updateDB(String request) {
-//        String data = statementDB.execute(request);
-        connectionDB.close();
 
     }
-//    public DBHandler(long userID) {
-//        this.userID = userID;
-//    }
 
     public String getData(String columnDB) {
-        String request = "SELECT " + columnDB + " FROM " + "student" + " WHERE student_ID=" + userID;
-        updateDB(request);
+
         return "0";
     }
 
