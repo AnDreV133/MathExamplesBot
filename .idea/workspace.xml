@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f229d6d-213d-4270-94cf-1a509fd6d43d" name="Changes" comment="bot v 2.1">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DBHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DB_TnS.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DB_teacherNStudents" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" afterDir="false" />
-    </list>
+    <list default="true" id="8f229d6d-213d-4270-94cf-1a509fd6d43d" name="Changes" comment="bot v 2.2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +210,28 @@
       <option name="project" value="LOCAL" />
       <updated>1674729158874</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="bot v 2.2">
+      <created>1674730502201</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1674730502201</updated>
+    </task>
+    <task id="LOCAL-00015" summary="bot v 2.2">
+      <created>1674730569183</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674730569183</updated>
+    </task>
+    <task id="LOCAL-00016" summary="bot v 2.2">
+      <created>1674730625450</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1674730625450</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +257,7 @@
     <MESSAGE value="bot v 1.7" />
     <MESSAGE value="bot v 2" />
     <MESSAGE value="bot v 2.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="bot v 2.1" />
+    <MESSAGE value="bot v 2.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="bot v 2.2" />
   </component>
 </project>
