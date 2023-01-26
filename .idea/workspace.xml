@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 2" />
+    <list default="true" id="4f0dbf47-0f23-4621-897e-08c40ea09e5d" name="Changes" comment="bot v 2">
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,17 +37,19 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "T:/java_project/BotForMathExercises",
+    "last_opened_file_path": "D:/MathExceptionBot",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.TestDB">
+  <component name="RunManager" selected="Application.Bot">
     <configuration name="Bot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/openjdk-19.0.1" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="org.example.Bot" />
-      <module name="BotForMathExercises" />
+      <module name="MathExceptionBot" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -57,7 +62,7 @@
     </configuration>
     <configuration name="TestDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.TestDB" />
-      <module name="BotForMathExercises" />
+      <module name="MathExceptionBot" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -94,6 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Bot" />
+      <item itemvalue="Application.org.example.BotLogics" />
+      <item itemvalue="Application.org.example.BotLogicsTest" />
+      <item itemvalue="Application.TestDB" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.TestDB" />

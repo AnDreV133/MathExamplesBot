@@ -32,10 +32,11 @@
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
   </component>
+  <component name="DBNavigator.Project.DatabaseEditorStateManager">
+    <last-used-providers />
+  </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="17e08543-7949-483d-b7b2-40b0f3be809b" object-ref="schemas/mydb/tables/student" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="17e08543-7949-483d-b7b2-40b0f3be809b" />
