@@ -52,6 +52,7 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/resources/table_of_rate.sql" connection-id="17e08543-7949-483d-b7b2-40b0f3be809b" session-id="MAIN" current-schema="table_of_rate" />
     <mapping file-url="file://$PROJECT_DIR$/src/main/resources" connection-id="virtual-mysql-connection" session-id="" current-schema="" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
