@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f229d6d-213d-4270-94cf-1a509fd6d43d" name="Changes" comment="bot v 2.1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DBHandler_v2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ExcepDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_01_2023_13_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_01_2023_13_26__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+    <list default="true" id="8f229d6d-213d-4270-94cf-1a509fd6d43d" name="Changes" comment="bot v 2.3">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_01_2023_14_25_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_26_01_2023_14_25__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DBHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/SecretInfoOfTelegramBot.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DBHandler_v2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DBHandler_v2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +233,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674729158874</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="bot v 2.3">
+      <created>1675099651990</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1675099651990</updated>
+    </task>
+    <task id="LOCAL-00015" summary="bot v 2.3">
+      <created>1675099685040</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1675099685040</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,7 +273,8 @@
     <MESSAGE value="bot v 1.7" />
     <MESSAGE value="bot v 2" />
     <MESSAGE value="bot v 2.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="bot v 2.1" />
+    <MESSAGE value="bot v 2.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="bot v 2.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -274,16 +287,6 @@
           <properties class="java.lang.RuntimeException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/DBHandler_v2.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/DBHandler_v2.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -5,6 +5,8 @@ import org.glassfish.grizzly.nio.transport.DefaultStreamWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -41,114 +43,128 @@ public class DBHandler_v2 {
     return mainData;
   }
 
-  public ExcepDB addNewPlayer(long id, String name, String info) {
+  
+
+  public void addNewPlayer(long id, String name, String info) {
     try {
       statementDB.execute(
-          format("insert into %s values (%d, '%s', 0, 0, now(), '%s');",
+          format("insert into %s values (%d, '%s', 0, 0, now(), " + (info == null ? "" : "'%s'") + ");",
               nameTable1, id, name, info)
       );
 
-      return ExcepDB.CORRECT;
     } catch (SQLException e) {
-      return ExcepDB.ID_EQUALS;
+      System.err.println("add new player error");
     }
   }
 
-  public ExcepDB addNewPlayer(long id, String name) {
-    return addNewPlayer(id, name, "__empty__");
-  }
-
-  public ExcepDB updateSeasonScore(long id, int score) {
+  public void updateSeasonScore(long id, int score) {
     try {
       statementDB.execute(
           format("update %s set season_score = season_score + %d where id_of_player = %d;",
               nameTable1, score, id)
       );
 
-      return ExcepDB.CORRECT;
     } catch (SQLException e) {
-      return ExcepDB.EXCEP;
+      System.out.println("");
     }
   }
 
-  public ExcepDB updateTotalScore() {
+  public void updateTotalScore() {
     try {
       statementDB.execute(
           format("update %s set total_score = total_score + season_score, season_score = 0;",
               nameTable1)
-
       );
-
-      return ExcepDB.CORRECT;
     } catch (SQLException e) {
-      return ExcepDB.EXCEP;
+      System.out.println("");
     }
   }
 
-  private static String[] getRowOfTableWithNotInitPlace(ResultSet rowOfData) throws SQLException {
-    return new String[]{
-        "__position_not_initialised__",
-        rowOfData.getString("player_name"),
-        String.valueOf(rowOfData.getInt("season_score")),
-        String.valueOf(rowOfData.getInt("total_score")),
-        String.valueOf(rowOfData.getDate("data_of_last_activity")),
-        rowOfData.getString("additional_information")
-    };
+  private static String getFormatDate(java.sql.Date date) {
+    return date.toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+  }
+  private static ArrayList<String> getRowOfTableWithNotInitPlace(ResultSet table) throws SQLException {
+    ArrayList<String> row = new ArrayList<>(6);
+    row.add("__position_not_initialised__");
+    row.add(table.getString("player_name"));
+    row.add(String.valueOf(table.getInt("season_score")));
+    row.add(String.valueOf(table.getInt("total_score")));
+    row.add(getFormatDate(table.getDate("date_of_registration")));
+    row.add(table.getString("additional_information"));
+
+    return row;
   }
 
-  public ArrayList<String[]> getTableOfRateWithPosition(int numOfPos) {
-    ArrayList<String[]> result = new ArrayList<>();
+  // Return ArrayList<ArrayList<str>> of info all players and them places
+  // for show info to user.
+  public ArrayList<ArrayList<String>> getTableOfRateWithPosition(int numOfPos) {
+    ArrayList<ArrayList<String>> table = new ArrayList<>();
     try {
-      ResultSet rowOfData = statementDB.executeQuery(
+      // query
+      ResultSet resultSet = statementDB.executeQuery(
           format("select * from %s order by season_score desc, total_score desc;",
               nameTable1)
       );
 
-      rowOfData.next();
-      result.set(0, getRowOfTableWithNotInitPlace(rowOfData))[0] = "1";
-      System.out.println(1);
+      // set first place
+      resultSet.next();
+      table.add(getRowOfTableWithNotInitPlace(resultSet));
+      table.get(0).set(0, "1");
+
+      // set other place
       int currPlace = 1;
-      for (int pos = 1; rowOfData.next() && pos < numOfPos; pos++) {
-        result.set(pos, getRowOfTableWithNotInitPlace(rowOfData));
-        String[] row = result.get(pos);
-        if (row[2].equals(result.get(pos - 1)[2]))
-          row[0] = String.valueOf(currPlace);
+      for (int pos = 1; resultSet.next() && pos < numOfPos; pos++) {
+        table.add(getRowOfTableWithNotInitPlace(resultSet));
+
+        if (table.get(pos).get(2).equals(table.get(pos - 1).get(2)))
+          table.get(pos).set(0, String.valueOf(currPlace));
         else
-          row[0] = String.valueOf(++currPlace);
+          table.get(pos).set(0, String.valueOf(++currPlace));
       }
 
-      return result;
+      return table;
     } catch (
         SQLException e) {
       return null;
     }
   }
 
-  public static void outputArrayListStringArr(ArrayList<String[]> arr) {
-    int i = 0;
-    while (arr.isEmpty()) {
-      for (int j = 0; j < arr.get(0).length; j++) {
-        System.out.print(arr.get(i)[j] + " ");
+  public static void outputArrayListStringArr(ArrayList<ArrayList<String>> arr) {
+    for (ArrayList<String> strings : arr) {
+      for (String string : strings) {
+        System.out.print(string + "\t ");
       }
       System.out.print("\n");
-      i++;
+    }
+  }
+
+  static boolean isDBConnected() {
+    try {
+      return !connectionDB.isClosed();
+    } catch (SQLException e) {
+      return false;
     }
   }
 
   public void closeAccessToDB() {
     try {
-      if (!connectionDB.isClosed()) connectionDB.close();
+      if (isDBConnected()) {
+        connectionDB.close();
+      }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      System.out.println("");
     }
+
+
   }
 
   public static void main(String[] arg) {
     DBHandler_v2 db = new DBHandler_v2();
 
-//    System.out.println(db.addNewPlayer(72, "ivan"));
+//    db.addNewPlayer(50, "elya", "Im gigachadman");
 //    System.out.println(db.updateSeasonScore(72, 5));
 //    System.out.println(db.updateTotalScore());
+
     outputArrayListStringArr(db.getTableOfRateWithPosition(5));
 
     db.closeAccessToDB();
