@@ -1,124 +1,165 @@
 package org.example;
 
-import lombok.SneakyThrows;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.security.PublicKey;
 import java.sql.*;
-import java.util.Properties;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import static java.lang.String.format;
 
 public class DBHandler {
-  private static final String nameDB = mainData().getProperty("NameDB");
-  private static final String passwordDB = mainData().getProperty("PasswordDB");
-  private static final String urlDB = mainData().getProperty("URLDB");
-  private static final Connection connectionDB;
-  private static final Statement statementDB;
+   // initialization begin
+   private static final GetterSecretInformation SI = new GetterSecretInformation();
+   private static final Connection connectionDB;
+   private static final Statement statementDB;
 
-  static {
-    try {
-      connectionDB = DriverManager.getConnection(urlDB, nameDB, passwordDB);
-      statementDB = connectionDB.createStatement();
-    } catch (SQLException e) {
-      System.err.println("No connection to DB");
-      throw new RuntimeException();
-    }
-  }
+   static {
+      try {
+         connectionDB = DriverManager.getConnection(
+             SI.get("URLDB"),
+             SI.get("NameDB"),
+             SI.get("PasswordDB")
+         );
 
-  static Properties mainData() {
-    Properties mainData;
-    try {
-      mainData = new Properties();
-      FileInputStream file = new FileInputStream("src/main/resources/SecretInfoOfTelegramBot.properties");
-      mainData.load(file);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    return mainData;
-  }
+         statementDB = connectionDB.createStatement();
 
-  private static int getLastPlace() throws SQLException {
-    ResultSet query = statementDB.executeQuery(
-        "select * from main order by place desc, season_score asc, total_score asc limit 1;"
-    );
+         if (connectionDB.isClosed())
+            System.err.println("no connection to DB");
 
-    query.next();
+      } catch (SQLException e) {
+         System.err.println("No connection to DB - error");
+         throw new RuntimeException();
+      }
+   } // connection to database
+   // initialization end
 
-    int minPlace = query.getInt("place");
-    int isMinScoreBiggerThanZero = query.getInt("season_score") +
-        query.getInt("total_score") > 0 ? 1 : 0;
+//public void test_connection() {
+//      statementDB.execute("")
+//}
+   public void addNewPlayer(long id, String name, String info) {
+      try {
+         statementDB.execute(
+             format("insert into db_of_rate.main " +
+                 "(id_of_player, player_name, date_of_registration, additional_information) " +
+                 "values (%d, '%s', now(), '%s');", id, name, info)
+         );
+      } catch (SQLException e) {
+         System.err.println("add new player error");
+      }
+   } // error
 
-    return minPlace + isMinScoreBiggerThanZero;
-  }
+   public void addNewPlayer(long id, String name) {
+      addNewPlayer(id, name, "");
+   }
 
-//  public ExcepDB updateSeasonScore(long id, int score) {
-//    try {
-//      statementDB.execute(format("UPDATE main SET season_score = season_score + %d WHERE id_of_player = %d LIMIT 1;",
-//          score, id));
-//      statementDB.execute();
-//      return ExcepDB.CORRECT;
-//    } catch (SQLException e) {
-//      return ExcepDB.NOT_UPDATE;
-//    }
-//  }
+   public void updateSeasonScore(long id, int numOfPoints) {
+      try {
+         statementDB.execute(
+             format("update db_of_rate.main set season_score = season_score + %d where id_of_player = %d;",
+                 numOfPoints, id)
+         );
+      } catch (SQLException e) {
+         System.err.println("update score error");
+      }
+   }
 
-  public String getData(String columnDB) {
+   public void updateTotalScore() {
+      try {
+         statementDB.execute(
+             "update db_of_rate.main set total_score = total_score + season_score;"
+         );
+      } catch (SQLException e) {
+         System.err.println("update total score error");
+      }
+   }
 
-    return "0";
-  }
+   // method sort a table after it update place depending on season_score _O(n*log(n))+O(n)_
+   private void setPlaces() {
+      try {
+         ResultSet resultSet = statementDB.executeQuery(
+             "select id_of_player, season_score from db_of_rate.main order by season_score desc, total_score desc;"
+         );
+         resultSet.next();
 
-  public ExcepDB removePlayerProgress(long id) {
-    try {
-      statementDB.execute(format("DELETE FROM main WHERE id_of_player = %d LIMIT 1;", id));
+         int prevScore = resultSet.getInt(1);
+         int place = 1;
+         System.err.println(prevScore);
+         statementDB.execute(format("update db_of_rate.main set place = %d where id_of_player = %d;",
+             place, prevScore)
+         );
 
-      return ExcepDB.CORRECT;
-    } catch (SQLException e) {
-      return ExcepDB.NOT_REMOVE;
-    }
-  }
+         while (resultSet.next()) {
+            if (resultSet.getInt("id_of_player") < prevScore)
+               place++;
 
-  public ExcepDB addNewPlayer(long id, String name, String info) {
-    try {
-      statementDB.execute(
-          format("insert into main  values (%d, '%s', %d, 0, 0, now(), '%s');",
-              getLastPlace(), name, id, info)
-      );
-      return ExcepDB.CORRECT;
-    } catch (SQLException e) {
-      return ExcepDB.ID_EQUALS;
-    }
-  }
+            statementDB.execute(format("update db_of_rate.main set place = %d where id_of_player = %d limit 1;",
+                place, resultSet.getInt("id_of_player"))
+            );
+         }
+      } catch (SQLException e) {
+         System.err.println("set places error");
+      }
+   }
 
-  public ExcepDB addNewPlayer(long id, String name) {
-    return addNewPlayer(id, name, "__null__");
-  }
+   private String getFormatDate(java.sql.Date date) {
+      return date.toLocalDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+   }
 
-  public boolean isDBClosed() {
-    try {
-      return connectionDB.isClosed();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
+   private String[] takeDataFromRow(ResultSet rs) throws SQLException {
+      return new String[]{
+          rs.getString(1),
+          rs.getString(2),
+          rs.getString(3),
+          rs.getString(4),
+          rs.getString(5),
+          getFormatDate(rs.getDate(6)),
+          rs.getString(7)
+      };
+   }
 
-  public void closeAccessToDB() {
-    try {
-      if (!connectionDB.isClosed()) connectionDB.close();
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-  }
-}
+   public String[] getPlayerInfo(long id) {
+      setPlaces();
 
-class TestDB {
-  public static void main(String[] arg) {
-    DBHandler db = new DBHandler();
+      try {
+         ResultSet resultSet = statementDB.executeQuery(
+             format("select id_of_player = %d from db_of_rate.main;",
+                 id
+             )
+         );
+         resultSet.next();
 
-//    System.out.println(db.addNewPlayer(41, "steve"));
-    System.out.println(db.removePlayerProgress(41));
+         return takeDataFromRow(resultSet);
+      } catch (SQLException e) {
+         System.err.println("get player info error");
+         return new String[]{"not info, data base error"};
+      }
+   } // error
 
-    db.closeAccessToDB();
-  }
+   public void outputArrayListStringArr(ArrayList<ArrayList<String>> arr) {
+      for (ArrayList<String> strings : arr) {
+         for (String string : strings) {
+            System.out.print(string + "\t ");
+         }
+         System.out.print("\n");
+      }
+   }
+
+   boolean isDBConnected() {
+      try {
+         return !connectionDB.isClosed();
+      } catch (SQLException e) {
+         return false;
+      }
+   }
+
+   public void closeAccessToDB() {
+      try {
+         if (isDBConnected()) {
+            connectionDB.close();
+         }
+      } catch (SQLException e) {
+         System.out.println("");
+      }
+
+
+   }
 }

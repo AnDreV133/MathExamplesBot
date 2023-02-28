@@ -32,7 +32,9 @@
       <console name="Connection" type="STANDARD" schema="db_of_rate" session="Main"><![CDATA[--select * from db_of_rate.score_for_one_day;
 --delete from db_of_rate.score_for_one_day;
 --update db_of_rate.main set season_score = season_score + 3 where id_of_player = 72;
-select * from db_of_rate.main;]]></console>
+--delete from db_of_rate.main where id_of_player = 7 limit 1;
+select id_of_player, season_score from db_of_rate.main order by season_score desc, total_score desc;
+--select * from db_of_rate.main;]]></console>
     </connection>
     <connection id="8a908a50-084d-400d-9d41-1a41e518d25f">
       <console name="MainScheme" type="STANDARD" schema="table_of_rate" session="Main"><![CDATA[SELECT * FROM main]]></console>
@@ -52,6 +54,11 @@ select * from db_of_rate.main;]]></console>
       <filter id="79ef3fca-2fe0-4925-91f9-4d94d554699d" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND" />
     </filter-actions>
     <filter-actions connection-id="17e08543-7949-483d-b7b2-40b0f3be809b" dataset="mydb.student" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="17e08543-7949-483d-b7b2-40b0f3be809b" dataset="db_of_rate.main" active-filter-id="EMPTY_FILTER">
+      <filter id="f6bdfa28-2c3b-4350-8cea-0e1ad04791fd" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id_of_player" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
     <filter-actions connection-id="17e08543-7949-483d-b7b2-40b0f3be809b" dataset="mydb.teacher" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

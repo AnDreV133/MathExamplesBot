@@ -12,31 +12,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.example.GetterSecretInformation;
 
 public class Bot extends TelegramLongPollingBot {
-    static Properties mainData() {
-        Properties mainData;
-        try {
-            mainData = new Properties();
-            FileInputStream file = new FileInputStream("src/main/resources/SecretInfoOfTelegramBot.properties");
-            mainData.load(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return mainData;
-    }
-
-    private static void teacherLogics(Update update) {
-    }
-
-    //    private static void startWork(Message message) {
-//        if (message.hasEntities()) {
-//            if (message.getEntities().)
-//        }
-//    }
-//    private static void studentLogics () {
-//        if
-//    }
+    GetterSecretInformation SI = new GetterSecretInformation();
     @SneakyThrows
     public static void main(String[] args) {
         Bot bot = new Bot();
@@ -46,12 +25,12 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return mainData().getProperty("BotName");
+        return SI.get("BotName");
     }
 
     @Override
     public String getBotToken() {
-        return mainData().getProperty("Token");
+        return SI.get("Token");
     }
 
     @Override
